@@ -66,24 +66,26 @@ app.post('/products',(req,res)=>{
 })
 
 // selectOne
-app.get("/products/:id", (req,res) => {
+app.get("/products/:id", (req, res) => {
   const params = req.params;
-  const {id} = params;
+  const { id } = params;
   models.Product.findOne({
     // where 조건을 주는 부분
-    where : {
-      id : id
-    }
-  }).then((result)=>{
-    console.log("PRODUCT:",result);
-    res.send({
-      product : result
-    })
-  }).catch((error)=>{
-    console.error(error);
-    res.status(400).send("상품 조회에 에러가 발생하였습니다.");
+    where: {
+      id: id,
+    },
   })
-})
+    .then((result) => {
+      console.log("PRODUCT : ", result);
+      res.send({
+        product: result,
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(400).send("상품 조회에 에러가 발생했습니다");
+    });
+});
 
 // 서버 연결
 app.listen(port,()=>{
