@@ -45,12 +45,14 @@ app.get('/products',(req,res)=>{
 
 // insert
 app.post('/products',(req,res)=>{
+  console.log("진입");
   const body = req.body;
+  console.log(body);
   const {name, description, price, seller, imageUrl} = body;
   if(!name || !description || !price || !seller || !imageUrl) {
     res.status(400).send("모든 필드를 입력해주세요!");
   }
-  models.Product.create({name, description, price, seller, imageUrl, soldout})
+  models.Product.create({name, description, price, seller, imageUrl})
     .then((result)=>{
       console.log("상품생성결과:",result);
       res.send({
