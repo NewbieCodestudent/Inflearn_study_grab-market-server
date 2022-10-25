@@ -16,6 +16,7 @@ const upload = multer({
     }
   })
 });
+// heroku 서버에 업로드할때 포트를 받아오기 위한 코드
 const port = process.env.PORT || 8090;
 
 app.use(express.json());
